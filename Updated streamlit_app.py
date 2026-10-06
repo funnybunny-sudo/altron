@@ -97,7 +97,9 @@ def main():
             targets = recon.scout_protocols()
             for t in targets:
                 with st.expander(f"Protocol: {t['name']}"):
-                    if st.button(f"Analyze {t['name']}", key=t['address']):
+for i, t in enumerate(targets): 
+    with st.expander(f"Target: {t['name']}"):
+        if st.button(f"Analyze {t['name']}", key=f"btn_{i}_{t.get('address')}"):
                         findings = forensic.analyze_contract(t['address'])
                         for f in findings: st.warning(f)
 
